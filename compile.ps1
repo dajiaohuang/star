@@ -4,8 +4,9 @@ Param(
 
 if($choice -match "compiler|both") {
 
-if(-not (haxe build.hxml)) {
-	exit
+& haxe build.hxml
+if($LASTEXITCODE -ne 0) {
+	exit $LASTEXITCODE
 }
 
 $mainFile = "bin/output/main.c"
